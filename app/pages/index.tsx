@@ -7,10 +7,6 @@ import { $fetch } from 'ofetch'
 
 export default defineComponent({
   setup() {
-
-    onMounted( async() => {
-      await $fetch('/api/init')
-    })
     
     return () => (
       <div class="min-h-screen bg-background overflow-hidden flex flex-col">
@@ -26,8 +22,8 @@ export default defineComponent({
           <div class="border-t border-border"/>
           
           {/* Scrollable palette area */}
-          <div class="flex-1 overflow-y-auto">
-            <div class="max-w-3xl mx-auto px-4 py-6">
+          <div class="relative flex-1 overflow-y-auto">
+            <div class="flex-1 max-w-3xl mx-auto px-4 py-6 min-h-full">
               <PaletteGalley/>
             </div>
           </div>

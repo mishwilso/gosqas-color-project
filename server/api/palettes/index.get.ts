@@ -1,34 +1,34 @@
 // GET all palettes
-import { defineEventHandler } from 'h3';
-import { tableClient } from "../../../utils/azureStorage";
-import { createError } from 'h3';
-import type { Palette, PaletteEntity } from "../../../types/palette";
+import { getTableClient, entityToPalette } from "../../utils/tableClient";
+import type { PaletteEntity, Palette } from "../../../types/palette";
+import { defineEventHandler, createError } from "h3";
 
-export default defineEventHandler(async (e) => {
-    try {
-        const entities = tableClient.listEntities<PaletteEntity>()
-        const palettes: Palette[] = []
+export default defineEventHandler(async () => {
+  try {
+    const tableClient = await getTableClient();
+    const palettes: Palette[] = []
 
-        // Add entites to the palettes list
-        for await (const entity of entities){
-            palettes.push({
-                id: entity.rowKey,
-                name: entity.name,
-                colors: JSON.parse(entity.colors),
-                createdAt: entity.createdAt 
-            })
-        }
 
-        // Sort em by newest. time? or day?
-        palettes.sort((a, b) => 
-            new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-        )
+    // List all entities in the table
+    const entities = tableClient.listEntities<PaletteEntity>();
 
-        return palettes;
-    } catch (error: any) {
-        throw createError({
-            statusCode: 500,
-            message: 'Failed to fetch palettes',
-        })
+    for await (const entity of entities) {
+      palettes.push(entityToPalette(entity));
     }
-})
+
+    // Sort em by newest. time? or day?
+    palettes.sort((a, b) => 
+        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    )
+
+    return { success: true, data: palettes, };
+  } catch (error: any) {
+      console.error("Error fetching palettes:", error);
+      
+      throw createError({
+        statusCode: 500,
+        statusMessage: "Failed to fetch palettes",
+        data: error.message,
+      });
+  }
+});

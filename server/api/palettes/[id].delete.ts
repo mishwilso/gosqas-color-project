@@ -1,32 +1,36 @@
-// DELETE palette by ID
-import { defineEventHandler, getRouterParams } from 'h3';
-import { tableClient } from "../../../utils/azureStorage";
-import { createError } from 'h3';
+import { getTableClient } from "../../utils/tableClient";
+import { defineEventHandler, createError, getRouterParam } from "h3";
 
-export default defineEventHandler(async (e) => {
-    try {
+export default defineEventHandler(async (event) => {
+  try {
 
-        // grabs context
-        const id = getRouterParams(e).id;
+    // grabs context
+    const id = getRouterParam(event, "id");
 
-        // if no id - give an error
-        if (!id) {
-            throw createError({
-                statusCode: 400,
-                message: 'Palette ID is required'
-            })
-        }
-
-        // else delete id
-        await tableClient.deleteEntity('palettes', id);
-
-        // let them know it worked :)
-        return { success: true }
-
-    } catch (error : any){
-        throw createError({
-            statusCode: error.statusCode || 500,
-            message: error.message || 'Failed to delete palette'
-        })
+    // if no id - give an error
+    if (!id) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: "Palette ID is required",
+      });
     }
-})
+
+    // else delete id
+    const tableClient = await getTableClient();
+    await tableClient.deleteEntity("palettes", id);
+
+
+    // let them know it worked :)
+    return {
+      success: true,
+      message: `Palette ${id} deleted successfully`,
+    };
+  } catch (error: any) {
+
+    throw createError({
+        statusCode: error.statusCode || 500,
+        message: error.message || 'Failed to delete palette'
+    })
+
+  }
+});
