@@ -41,6 +41,21 @@ Open [http://localhost:3000](http://localhost:3000) and start generating palette
 - Give your palette a name and click **Save** to add it to your gallery
 - Hover over colors in the gallery to copy hex codes
 
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) for testing!
+
+```bash
+# Run all tests !
+npm run test
+
+# Run unit tests only 
+npm run test:unit
+
+# Run integration tests only 
+npm run test:integration
+```
+
 ## Notes
 
 Getting Azurite to finally work was a journey...but I made it out alive!
