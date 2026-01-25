@@ -2,12 +2,9 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
-  
-  vite: {
-    plugins: [
-      vueJsx()
-    ]
-  },
+  css: [
+    '@/assets/css/main.css'
+  ],
   
   typescript: {
     strict: true

@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@azure/data-tables": "^13.3.2",
     "@nuxt/eslint": "^1.13.0",
     "eslint": "^9.39.2",
     "nuxt": "^4.3.0",
@@ -20,6 +21,7 @@
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@vitejs/plugin-vue-jsx": "^5.1.3",
     "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.0.5",
     "vue-tsc": "^3.2.3"
   }
 }
