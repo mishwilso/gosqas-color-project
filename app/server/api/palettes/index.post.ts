@@ -39,6 +39,8 @@ export default defineEventHandler(async (e) => {
             createdAt
         }
 
+        // for testing
+        console.log(palette);
         return palette
 
     } catch (error : any) {
