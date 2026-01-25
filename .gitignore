@@ -25,3 +25,7 @@ logs
 
 # Azurute API
 azureStorage.ts
+azurite-data/
+__blobstorage__/
+__queuestorage__/
+__azurite_db_*.json

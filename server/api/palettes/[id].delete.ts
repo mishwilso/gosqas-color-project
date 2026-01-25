@@ -1,6 +1,6 @@
 // DELETE palette by ID
 import { defineEventHandler, getRouterParams } from 'h3';
-import { tableClient } from "@/utils/azureStorage";
+import { tableClient } from "../../../utils/azureStorage";
 import { createError } from 'h3';
 
 export default defineEventHandler(async (e) => {

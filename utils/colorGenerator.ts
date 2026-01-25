@@ -1,4 +1,4 @@
-import type { Color } from "@/types/palette";
+import type { Color } from "../types/palette";
 
 // Needed: genrandColor, genrandompalettte, genpalettewith locks
 

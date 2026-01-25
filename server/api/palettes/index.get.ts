@@ -1,8 +1,8 @@
 // GET all palettes
 import { defineEventHandler } from 'h3';
-import { tableClient } from "@/utils/azureStorage";
+import { tableClient } from "../../../utils/azureStorage";
 import { createError } from 'h3';
-import type { Palette, PaletteEntity } from "@/types/palette";
+import type { Palette, PaletteEntity } from "../../../types/palette";
 
 export default defineEventHandler(async (e) => {
     try {

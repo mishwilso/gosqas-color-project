@@ -1,11 +1,16 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import PaletteCreator from '@/components/PaletteCreator'
 import PaletteGalley from '@/components/PaletteGalley'
+import { $fetch } from 'ofetch'
 
 export default defineComponent({
   setup() {
+
+    onMounted( async() => {
+      await $fetch('/api/init')
+    })
     
     return () => (
       <div class="min-h-screen bg-background overflow-hidden flex flex-col">

@@ -1,7 +1,8 @@
-import type { Color } from '@/types/palette';
-import { generatePalette, regenerateWithLocks} from '@/utils/colorGenerator';
-import { defineComponent, ref } from 'vue'
+import type { Color } from '../../types/palette';
+import { generatePalette, regenerateWithLocks} from '../../utils/colorGenerator';
+import { defineComponent, ref, onMounted, onUnmounted } from 'vue'
 import { Lock, Unlock,RefreshCw } from 'lucide-vue-next';
+import { $fetch } from 'ofetch';
 
 export default defineComponent({
     name: 'Palette Creator',
@@ -42,12 +43,56 @@ export default defineComponent({
 
 
         // save Pallete to database
-        
+        const savePalette = async() => {
+            // ensure valid palette name
+            if (!paletteName.value.trim()) {
+                alert('Please enter a palette name');
+                return;
+            }
 
+            isSaving.value = true;
+
+            try {
+                await $fetch('/api/palettes', {
+                    method: 'POST',
+                    body: {
+                        name: paletteName.value,
+                        colors: colors.value
+                    }
+                });
+
+                // reset the form
+                paletteName.value = '';
+
+                // maybe not..cause what if user want multiple palettes with a saved color?
+                // colors.value = generatePalette()
+
+                // toss event
+                window.dispatchEvent(new Event('palette-saved'));
+
+            } catch {
+
+            } finally {
+                isSaving.value = false;
+            }
+        }
 
         // keyboard shortcut to generate (Space, mount, unmount)
+        const handleKeyPress = (e: KeyboardEvent) => {
+            // ensure target in the creator and not like- the input
+            if (e.code === 'Space' && e.target === document.body){
+                e.preventDefault();
+                colors.value = regenerateWithLocks(colors.value);
+            }
+        }
 
+        onMounted(() => {
+            window.addEventListener('keydown', handleKeyPress);
+        })
 
+        onUnmounted(() => {
+            window.removeEventListener('keydown', handleKeyPress);
+        })
 
         return () => (
         <div class="space-y-4">
@@ -111,14 +156,16 @@ export default defineComponent({
 
                 {/* save color button */}
                 <button
+                    onClick={savePalette}
                     disabled = {!paletteName.value}
                     class={`h-10 w-20 shrink-0 border-0 rounded-md bg-primary 
                         text-primary-foreground  text-sm 
                         hover:bg-primary/90 
                         disabled:pointer-events-none disabled:opacity-50
+                        transition-colors
                         `}
                 >
-                    Save
+                    {isSaving.value ? 'Saving...' : 'Save'}
                 </button>
             </div>
         </div>
