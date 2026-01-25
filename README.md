@@ -1,6 +1,6 @@
 # Gosqas Interview Project
 
-Hi! This is a color palette generator inspired by [Coolors](https://coolors.co). Generate random color palettes, lock colors you like, and save your favorites to a gallery.
+Hi! This is a color palette generator inspired by [Coolors](https://coolors.co). Generate random color palettes, lock colors you like, and save your favorites to a gallery :D
 
 ## Tech Stack
 
@@ -43,6 +43,6 @@ Open [http://localhost:3000](http://localhost:3000) and start generating palette
 
 ## Notes
 
-Getting Azurite to finally work was a journey...but I made it alive!
+Getting Azurite to finally work was a journey...but I made it out alive!
 
 The connection string setup and making sure the table storage emulator was running on the right port took some trial and error. If you run into issues, make sure Azurite is running before starting the dev server!
