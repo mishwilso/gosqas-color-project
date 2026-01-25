@@ -12,21 +12,21 @@ export default defineComponent({
 
         const handleColorChange = (index: number, e: Event) => {
             const value = (e.target as HTMLInputElement).value;
-            const newColors = [...colors.value];
-            newColors[index] = {hex: value, locked: false};
-            colors.value = newColors;
-        }
-
-        const handleToggleLock = (index: number, e: Event) => {
-            e.stopPropagation();
-            const newColors = [...colors.value];
-            const currentColor = newColors[index];
+            const currentColor = colors.value[index];
             if (currentColor){
-                newColors[index] = {hex: currentColor.hex, locked: !currentColor.locked};
+                colors.value[index] = {hex: value, locked: currentColor.locked};
             }
-            colors.value = newColors;
         }
  
+        // toggle locks
+        const handleToggleLock = (index: number, e: Event) => {
+            e.stopPropagation();
+            const currentColor = colors.value[index];
+            if (currentColor){
+                colors.value[index] = {hex: currentColor.hex, locked: !currentColor.locked};
+            }
+        }
+
         const isLighterColor = (hexColor: string) => {
             const hex = hexColor.replace('#', '');
 
@@ -40,9 +40,9 @@ export default defineComponent({
         }
         
 
-        // toggle locks
 
         // save Pallete to database
+        
 
 
         // keyboard shortcut to generate (Space, mount, unmount)

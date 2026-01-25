@@ -1,0 +1,1 @@
+// DELETE palette by ID
