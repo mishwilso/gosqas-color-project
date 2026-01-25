@@ -9,7 +9,7 @@ export default defineComponent({
   setup() {
     
     return () => (
-      <div class="min-h-screen bg-background overflow-hidden flex flex-col">
+      <div class="h-screen bg-background overflow-hidden flex flex-col">
         <Header/>
         <main class="flex-1 flex flex-col overflow-hidden">
           {/* Sticky Color Creator */}

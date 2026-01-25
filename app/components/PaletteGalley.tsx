@@ -33,9 +33,9 @@ export default defineComponent({
             if (!confirm('Delete this palette?')) return
             
             try {
-                await $fetch(`/api/palettes/${id}`), {
+                await $fetch(`/api/palettes/${id}`, {
                     method: 'DELETE'
-                }
+                })
                 await fetchPalettes()
             } catch (error) {
                 alert('Failed to delete palette');
