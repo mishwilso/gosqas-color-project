@@ -4,10 +4,10 @@ export default defineComponent({
   name: 'Footer',
   setup() {
     return () => (
-      <footer class="bg-gray-800 text-gray-300 mt-12 border-t-white">
+      <footer class="bg-background text-gray-300 mt-12 border border-t border-border">
         <div class="container mx-auto px-4 py-6 text-center">
           <p class="text-sm">
-            Built with Nuxt.js + Azure Table Storage | Press SPACE to generate!
+            Built by Mish using Nuxt js + Azurite | Press SPACE to generate!
           </p>
         </div>
       </footer>
