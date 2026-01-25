@@ -26,6 +26,11 @@ export async function getTableClient() {
 
 // init palette table
 async function initializeTable() {
+
+  if (process.env.VITEST) {
+    console.log('Skipping table init in test environment');
+    return;
+  }
   
   // TableServiceClient is for managing tables themselves (create/delete tables)
   const serviceClient = TableServiceClient.fromConnectionString(connectionString);
