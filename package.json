@@ -3,16 +3,11 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
-    "dev:frontend": "npm run dev --workspace=packages/frontend",
-    "dev:backend": "npm run dev --workspace=packages/backend",
-    "dev": "concurrently \"npm run azurite\" \"npm run dev:backend\" \"npm run dev:frontend\"",
     "azurite": "azurite-table --location ./azurite-data --tablePort 10002",
+    "start": "npm run start --workspace=packages/backend",
+    "dev": "npm run dev --workspace=packages/frontend",
     "build": "npm run build --workspaces",
-    "build:frontend": "npm run build --workspace=packages/frontend",
-    "build:backend": "npm run build --workspace=packages/backend",
-    "test": "npm run test --workspaces --if-present",
-    "test:frontend": "npm run test --workspace=packages/frontend",
-    "test:backend": "npm run test --workspace=packages/backend"
+    "test": "npm run test --workspaces --if-present"
   },
   "devDependencies": {
     "azurite": "^3.29.0",
