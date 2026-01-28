@@ -60,19 +60,16 @@ const savePalette = async () => {
   try {
     // POST to /api/palettes with name and colors
     await createPalette(paletteName.value, colors.value)
-
-    // clear the name input after saving
     paletteName.value = ''
-    // tell the gallery to refresh (the hacky way lol)
+
+    // tell gallery to refresh
     window.dispatchEvent(new Event('palette-saved'))
   } catch {
-    // something went wrong :/ but we'll just silently fail for now
   } finally {
     isSaving.value = false
   }
 }
 
-// regenerate colors (respects locked ones)
 const regenerate = () => {
   colors.value = regenerateWithLocks(colors.value)
 }
