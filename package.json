@@ -7,7 +7,7 @@
     "start": "npm run start --workspace=packages/backend",
     "dev": "npm run dev --workspace=packages/frontend",
     "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present run --coverage"
   },
   "devDependencies": {
     "azurite": "^3.29.0",
