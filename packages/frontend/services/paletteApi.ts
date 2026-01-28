@@ -1,6 +1,7 @@
 // paletteApi.ts - API client functions for palette operations
 import type { Palette, Color } from '../utils/types'
 
+// for response typechecking
 interface ApiResponse<T> {
     success: boolean
     data: T
@@ -22,5 +23,5 @@ export async function createPalette(name: string, colors: Color[]): Promise<ApiR
 }
 
 export async function deletePalette(id: string): Promise<void> {
-    await fetch(`/api/palettes/${id}`, { method: 'DELETE' })
+    await fetch(`/api/palettes/${id}`, { method: 'DELETE' }) 
 }

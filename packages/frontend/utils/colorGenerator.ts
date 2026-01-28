@@ -2,7 +2,8 @@ import type { Color } from "./types";
 
 // Needed: genrandColor, genrandompalettte, genpalettewith locks
 
-
+// scales rand num to 0xFFFFFF (16777215) and converts to hex string (16)
+// pad with leading zeros to ensure 6 digits, adds # prefix
 export function generateRandomColor(): string {
     return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
 }
