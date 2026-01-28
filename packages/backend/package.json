@@ -1,0 +1,21 @@
+{
+  "name": "gosqas-color-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "func start",
+    "dev": "npm run build && func start",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@azure/data-tables": "^13.3.2",
+    "@azure/functions": "^4.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/node": "^20.0.0",
+    "vitest": "^3.2.0"
+  }
+}
