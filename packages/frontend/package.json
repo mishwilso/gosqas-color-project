@@ -1,0 +1,32 @@
+{
+  "name": "gosqas-color-frontend",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^1.13.0",
+    "eslint": "^9.39.2",
+    "nuxt": "^4.3.0",
+    "nuxt-lucide-icons": "^2.0.0",
+    "vue": "^3.5.27",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^3.23.0",
+    "@nuxtjs/tailwindcss": "^6.14.0",
+    "@vitejs/plugin-vue": "^5.2.0",
+    "@vue/test-utils": "^2.4.6",
+    "happy-dom": "^20.3.7",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.0.5",
+    "vitest": "^3.2.0",
+    "vue-tsc": "^3.2.3"
+  }
+}
