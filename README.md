@@ -2,37 +2,49 @@
 
 Hi! This is a color palette generator inspired by [Coolors](https://coolors.co). Generate random color palettes, lock colors you like, and save your favorites to a gallery :D
 
+Made for GOSQAS Interview Meeting
+
 ## Tech Stack
 
 - **Frontend:** Nuxt 4 (Vue 3) with TypeScript and Tailwind CSS
-- **Backend:** Nuxt Server API (H3)
-- **Database:** Azure Data Tables (with Azurite for local development)
+- **Backend:** Azure Functions v4 (Node.js)
+- **Database:** Azure Data Tables 
 
 ## Getting Started
 
 ### Install Dependencies
 
 ```bash
+# Install all workspace dependencies from root
 npm install
 ```
 
-### Start the Database (Azurite)
+### Run the App
 
-You need Azurite running for the palette storage to work:
-
+**Terminal 1 - Start the Database (Azurite):**
 ```bash
 npm run azurite
 ```
 
-This starts the Azure Table Storage emulator on port 10002. Data is stored locally in `./azurite-data/`.
+**Terminal 2 - Start the Backend:**
+```bash
+npm start
+```
 
-### Run the Dev Server
-
+**Terminal 3 - Start the Frontend:**
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and start generating palettes!
+Open [http://localhost:3000](http://localhost:3000) and start making palettes!
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/palettes` | Fetch all saved palettes |
+| POST | `/api/palettes` | Create a new palette |
+| DELETE | `/api/palettes/{id}` | Delete a palette by ID |
 
 ## How to Use
 
@@ -46,18 +58,30 @@ Open [http://localhost:3000](http://localhost:3000) and start generating palette
 This project uses [Vitest](https://vitest.dev/) for testing!
 
 ```bash
-# Run all tests !
+# Run all tests
 npm run test
 
-# Run unit tests only 
-npm run test:unit
-
-# Run integration tests only 
-npm run test:integration
 ```
+
+## Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run azurite` | Start Azure Table Storage  |
+| `npm start` | Start the backend |
+| `npm run dev` | Start the frontend |
+| `npm run test` | Run tests |
 
 ## Notes
 
 Getting Azurite to finally work was a journey...but I made it out alive!
 
-The connection string setup and making sure the table storage emulator was running on the right port took some trial and error. If you run into issues, make sure Azurite is running before starting the dev server!
+The connection string setup and making sure the table storage was running on the right port took some trial and error. If you run into issues, make sure Azurite is running before starting the dev server!
+
+( Maybe dev more to add to website )
+
+### Future Implementations
+- Complementary color generation
+- Gradients generation
+- Add/Remove # of colors in palette
+- Type in HEX for color
